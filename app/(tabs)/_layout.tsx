@@ -7,7 +7,7 @@ import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+// Tab ikonu bileşeni
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -22,15 +22,15 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
+        // Web'de header'ın statik render'ını devre dışı bırakıyoruz
         headerShown: useClientOnlyValue(false, true),
       }}>
+      {/* Ana Ekran (Home) */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Ana Sayfa',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -47,11 +47,28 @@ export default function TabLayout() {
           ),
         }}
       />
+      {/* Gelirler Ekranı */}
       <Tabs.Screen
-        name="two"
+        name="income"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Gelirler',
+          tabBarIcon: ({ color }) => <TabBarIcon name="dollar" color={color} />,
+        }}
+      />
+      {/* Giderler Ekranı */}
+      <Tabs.Screen
+        name="expense"
+        options={{
+          title: 'Giderler',
+          tabBarIcon: ({ color }) => <TabBarIcon name="credit-card" color={color} />,
+        }}
+      />
+      {/* Bütçe Ekranı */}
+      <Tabs.Screen
+        name="budget"
+        options={{
+          title: 'Bütçe',
+          tabBarIcon: ({ color }) => <TabBarIcon name="pie-chart" color={color} />,
         }}
       />
     </Tabs>
